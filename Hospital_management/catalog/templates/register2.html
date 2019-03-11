@@ -1,0 +1,203 @@
+{% load static%}
+<html lang="en">
+<head>
+	<title>Sign Up Form</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->	
+	<link rel="icon" type="image/png" href=" {% static 'images/icons/favicon.ico' %}"/>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %} ">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'fonts/font-awesome-4.7.0/css/font-awesome.min.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'fonts/iconic/css/material-design-iconic-font.min.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'vendor/animate/animate.css' %}">
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="{% static 'vendor/css-hamburgers/hamburgers.min.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'vendor/animsition/css/animsition.min.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'vendor/select2/select2.min.css' %}">
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="{% static 'vendor/daterangepicker/daterangepicker.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css"  href="{% static 'css/util.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+<!--===============================================================================================-->
+</head>
+
+<body>
+	
+	
+	
+	
+	<div class="limiter">
+		<div class="container-login100">
+			<div class="wrap-login100">
+				<form class="login100-form validate-form" name="Registration_form" method="post">
+					 {% csrf_token %}
+					 {{ user_form.non_field_errors }}
+					<span class="login100-form-title p-b-26">
+						Sign Up 
+					</span>
+					<span class="login100-form-title p-b-48">
+						<i class="zmdi zmdi-font"></i>
+					</span>
+
+					<datalist id="User_list">
+						{% for users in user%}
+							<option value="{{users.id}}">
+						{% endfor %}
+					</datalist>
+
+					<div class="wrap-input100" >
+						 <input  class="input100" type="Integer" list="User_list" id="id_u_id" name="u_id" for="{{ user_form.u_id.id_for_label }}">
+						<span class="focus-input100" data-placeholder="u_id"></span> 
+					</div>
+					{{ user_form.u_id.errors }}
+
+
+					<div class="wrap-input100" >
+						 <input  class="input100" type="text" id="id_First_Name" name="First_Name" for="{{ user_form.First_Name.id_for_label }}">
+						<span class="focus-input100" data-placeholder="First_Name"></span> 
+					</div>
+					{{ user_form.First_Name.errors }}
+
+					<div class="wrap-input100" >
+						 <input  class="input100" type="text" id="id_Last_Name" name="Last_Name" for="{{ user_form.Last_Name.id_for_label }}">
+						<span class="focus-input100" data-placeholder="Last_Name"></span> 
+					</div>
+					{{ user_form.Last_Name.errors }}
+
+					<div class="wrap-input100" >
+						 <input  class="input100" type="text" id="id_Middle_Name" name="Middle_Name" for="{{ user_form.Middle_Name.id_for_label }}">
+						<span class="focus-input100" data-placeholder="Middle_Name"></span> 
+					</div>
+					{{ user_form.Middle_Name.errors }}
+
+					<div class="wrap-input100" >
+						 <input  class="input100" type="text" id="id_Address" name="Address" for="{{ user_form.Address.id_for_label }}">
+						<span class="focus-input100" data-placeholder="Address"></span> 
+					</div>
+					{{ user_form.Address.errors }}
+
+					<div class="wrap-input100" >
+						 <input  class="input100" type="Date" id="id_Date_Of_Birth" name="Date_Of_Birth" for="{{ user_form.Date_Of_Birth.id_for_label }}">
+						<span class="focus-input100" data-placeholder="Date_Of_Birth"></span> 
+					</div>
+					{{ user_form.Date_Of_Birth.errors }}
+
+					<div class="wrap-input100" >
+						 <input  class="input100" type="text" id="id_Blood_Grp" name="Blood_Grp" for="{{ user_form.Blood_Grp.id_for_label }}">
+						<span class="focus-input100" data-placeholder="Blood_Grp"></span> 
+					</div>
+					{{ user_form.Blood_Grp.errors }}
+
+
+					<div class="container-login100-form-btn">
+						<div class="wrap-login100-form-btn">
+							<div class="login100-form-bgbtn"></div>
+							<button class="login100-form-btn" type="submit">
+								Register
+							</button>
+						</div>
+					</div>
+
+		</form>
+
+		<script src=" {% static 'vendor/jquery/jquery-3.2.1.min.js' %}" ></script>
+<!--===============================================================================================-->
+	<script src="{% static 'vendor/animsition/js/animsition.min.js' %} "></script>
+<!--===============================================================================================-->
+	<script src="{% static 'vendor/bootstrap/js/popper.js' %}"></script>
+	<script src="{% static 'vendor/bootstrap/js/bootstrap.min.js' %}"></script>
+<!--===============================================================================================-->
+	<script src="{% static 'vendor/select2/select2.min.js' %}"></script>
+<!--===============================================================================================-->
+	<script src="{% static 'vendor/daterangepicker/moment.min.js' %}"></script>
+	<script src="{% static 'vendor/daterangepicker/daterangepicker.js' %}"></script>
+<!--===============================================================================================-->
+	<script src="{% static 'vendor/countdowntime/countdowntime.js' %}"></script>
+<!--===============================================================================================-->
+	<script src="{% static 'js/main.js' %}"></script>
+		<!--<form method="post">
+			{% csrf_token %}
+
+			<!--{{user_form.as_p}}-->
+		<!--</form>-->
+	<!--<form method="post">
+		 {% csrf_token %}
+		{% for field in user_form %}
+    <div class="fieldWrapper">
+        {{ field.errors }}
+        {{ field.label_tag }} {{ field }}
+        <b>{{ field.label.id}}</b>
+    </div>
+{% endfor %}
+		<button type="submit"> submit</button>
+	</form>-->
+
+	<!--<b>{{ user_form.password1.id_for_label }}</b>
+	<b>{{ user_form.password2.id_for_label }}</b>
+	<b>{{ user_form.username.id_for_label }}</b>
+	<b>{{ user_form.first_name.id_for_label }}</b>
+	<b>{{ user_form.last_name.id_for_label }}</b>
+	<b>{{ user_form.email.id_for_label }}</b>
+
+
+	<div class="limiter">
+		<div class="container-login100">
+			<div class="wrap-login100">
+				<form method="post">
+					<span class="login100-form-title p-b-26">
+						Sign Up
+					</span>
+					{% csrf_token %}
+					{{ user_form.non_field_errors }}
+					<div class="wrap-input100" >
+				    	{{ form.username.errors }}
+				    	<label for="{{ user_form.username.id_for_label }}">Username:</label>
+				    	 <!--<input  class="input100" type="text" id="id_last_name" name="last_name" >
+				    	 <span class="focus-input100" data-placeholder="Email Id" for="{{ user_form.username.id_for_label }}"></span>-->
+				    	<!--{{ user_form.username }}
+				    	</input>
+				    </div>
+				    <div class="wrap-input100" >
+				    	{{ user_form.password1.errors }}
+				    	<label for="{{ user_form.password1.id_for_label }}">Password1:</label>
+				    	{{ user_form.password1 }}
+					</div>
+					<div class="wrap-input100" >
+						    {{ user_form.password2.errors }}
+						    <label for="{{ user_form.password2.id_for_label }}">Password2:</label>
+						    {{ user_form.password2}}
+					</div>
+					<div class="wrap-input100" >
+						    {{ user_form.first_name.errors }}
+						    <label for="{{ user_form.first_name.id_for_label }}">FIRST name</label>
+						    {{ user_form.first_name }}
+					</div>
+					<div class="wrap-input100" >
+						    {{ user_form.last_name.errors }}
+						    <label for="{{ user_form.last_name.id_for_label }}">Last name</label>
+						    {{ user_form.last_name }}
+					</div>
+					<div class="wrap-input100" >
+						    {{ user_form.email.errors }}
+						    <label for="{{ user_form.email_name.id_for_label }}">email</label>
+						    {{ user_form.email }}
+					</div>
+					<div class="container-login100-form-btn">
+						<div class="wrap-login100-form-btn">
+							<div class="login100-form-bgbtn"></div>
+								<button class="login100-form-btn" type="submit">
+											Sign Up
+								</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>

@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+{% load staticfiles%}
+<html lang="en"> 
+<head>
+	<!-- Load Css For DropDown -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+	<script src="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+	
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!--===============================================================================================-->	
+    <meta name="description" content="">
+    <!--===============================================================================================-->	
+    <meta name="author" content="">
+    <!--===============================================================================================-->	
+	<title>Appointment Management</title>
+	<link rel="stylesheet" href="{% static 'main/css/font-awesome.min.css' %} ">
+	<!--===============================================================================================-->	
+	<link rel="stylesheet" href="{% static 'main/css/bootstrap.min.css' %}">
+	<!--===============================================================================================-->	
+	<link rel="stylesheet" href="{% static 'main/css/style.css' %} ">
+	<!--===============================================================================================-->	
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:600italic,400,800,700,300' rel='stylesheet' type='text/css'>
+	<!--===============================================================================================-->	
+	<link href='http://fonts.googleapis.com/css?family=BenchNine:300,400,700' rel='stylesheet' type='text/css'>
+	<!--===============================================================================================-->	
+	<script src="{% static 'main/js/modernizr.js' %} "></script>
+	<!--===============================================================================================-->	
+
+	<!--[if lt IE 9]>
+      <script src="js/html5shiv.js"></script>
+      <script src="js/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+<body>
+	
+	<!-- ====================================================
+	header section -->
+	<header class="top-header">
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-2 header-logo">
+					<br>
+					<a href="main_base.html"><img src="{% static 'main/img/logo.png' %}" alt="" class="img-responsive logo"></a>
+				</div>
+
+				<div class="col-md-10">
+					<nav class="navbar navbar-default">
+					  <div class="container-fluid nav-bar">
+					    <!-- Brand and toggle get grouped for better mobile display -->
+					    <div class="navbar-header">
+					      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+					        <span class="sr-only">Toggle navigation</span>
+					        <span class="icon-bar"></span>
+					        <span class="icon-bar"></span>
+					        <span class="icon-bar"></span>
+					        <span class="icon-bar"></span>
+					        <span class="icon-bar"></span>
+					      </button>
+					    </div>
+
+					    <!-- Collect the nav links, forms, and other content for toggling -->
+					    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+							 <ul class="nav navbar-nav navbar-left">
+                  <li><a class="menu active" href="{% url 'home' %}">Home</a></li>
+                  <li><a class="menu" href="{% url 'aboutus' %}">About Us</a></li>
+                  <li><a class="menu" href="{% url 'service' %}">Specialities</a></li>
+                  <li><a class="menu" href="{% url 'team' %}">Our Team</a></li>
+                  {% if user.is_authenticated %}
+                    {% if Patient_logged_in %}
+                         <li class="dropdown">
+                              <button class="dropbtn">Appointments</button>
+                                <div class="dropdown-content">
+                                    <ul class="dropdown1"> 
+                                        <li><a class ="menu" href="{% url 'takeapoint' %}">Make An Appointment</a></li>
+                                        <li><a  class ="menu" href="{% url 'cancelapoint' %}">Cancel An Appointment</a></li>
+                                        <li><a class ="menu" href="{% url 'myappoint' %}">My Appointments</a></li>
+                                    </ul>
+                                </div> 
+                        </li>
+                    <li><a class="menu" href="{% url 'history' %}"> History</a></li>
+                    {% endif %}
+                    {% if Doctor_logged_in %}
+                       <li><a class="menu" href="{% url 'givemedicine' %}">Give Medicine</a></li>
+                      <li><a class="menu" href="{% url 'viewapoint'%}">View Appointment</a></li>
+                    {% endif %}
+                    {% if Staff_logged_in %}
+                           <li><a class="menu active " href="{% url 'viewapoint'%}">View Appointment</a></li>
+                    {% endif %}
+                    <li><a class="menu" href="{% url 'contact' %}"> Contact Us</a></li>
+                  </ul>
+                 <ul class="nav navbar-nav navbar-right">
+
+                  <div class="dropdown">
+                      <button class="btn btn-default btn-lg dropdown-toggle" type="button" data-toggle="dropdown"> Hello {{                 user.get_username }} !    <span class="caret"></span></button>
+                                   <ul class="dropdown-menu">
+                                          <li><h3 align="center"><a href="#">{{ user.get_username }} !</a></h3></li>
+                                          
+                
+                        
+                    
+            <!--     <li><a class="dropdown" href="{% url 'home' %}"> Hello {{ user.get_username }} !</a></li>
+                    <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href=""><span class="glyphicon glyphicon-log-out" ></span>
+                    <span class="caret"></span></a>
+                        <ul class="dropdown-menu"> -->
+                          <!--<div class="card">
+                        <img src="{{ Patient_logged_in.0.Profile_pic.url }}" alt="Card image"  style="width:50%">
+                        <div class="container">
+                          <h4><b>{{ user.get_username }}</b></h4> 
+                          <p>Architect & Engineer</p> 
+                           <a href="{%url 'logout'%}" class="btn btn-primary float-right">Logout</a>
+                        </div>
+                      </div>-->
+                     
+                       {% if Patient_logged_in %}
+                          <div class="card" style="width:250px">
+                            <div class="w3-container w3-center"> 
+                              <div class="text-center">
+                              <img class="card-img-center" src="{{ Patient_logged_in.0.Profile_pic.url }}" alt="Card image"   style="width:40%" >
+                          </div>
+                        {% endif %}
+                        {% if Doctor_logged_in %}
+                          <div class="card" style="width:250px">
+                            <div class="w3-container w3-center"> 
+                              <div class="text-center">
+                              <img class="card-img-center" src="{{ Doctor_logged_in.0.Profile_pic.url }}" alt="Card image"   style="width:20%" >
+                          </div>
+                        {% endif %}
+                        {% if Staff_logged_in %}
+                          <div class="card" style="width:250px">
+                            <div class="w3-container w3-center"> 
+                              <div class="text-center">
+                              <img class="card-img-center" src="{{ Staff_logged_in.0.Profile_pic.url }}" alt="Card image"   style="width:20%" >
+                          </div>
+                        {% endif %}
+                       
+                        <li><h3 align="center"><a href="{%url 'logout'%}">LOGOUT</a></h3></li>
+                                   </ul>
+                       </div>
+
+                       <!--
+                          <li role="presentation"><a role="menuitem">Signed In as</a></li>
+                          <li role="presentation"><a role="menuitem" tabindex="-1"> {{ user.get_username }}</a></li>
+                          <li role="presentation" class="divider"></li>
+                          <li role="presentation"><a role="menuitem" tabindex="-1" href="{%url 'logout'%}">Logout</a></li>
+                        -->
+                        </ul>
+                </li>
+                  </ul>
+                
+              {% endif %}
+                </ul> 
+              </div><!-- /navbar-collapse -->
+            </div><!-- / .container-fluid -->
+          </nav>
+        </div>
+      </div>
+    </div>
+  </header> <!-- end of header area -->
+
+	
+
+	<!-- map section -->
+	<div class="api-map" id="contact">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-md-12 map" id="map"></div>
+			</div>
+		</div>
+	</div><!-- end of map section -->
+
+	<!-- contact section starts here -->
+	<section class="contact">
+		<div class="container">
+			<div class="row">
+				<div class="contact-caption clearfix">
+					<div class="contact-heading text-center">
+						<h2>contact us</h2>
+					</div>
+					<div class="col-md-5 contact-info text-left">
+						<h3>contact information</h3>
+						<div class="info-detail">
+							<ul><li><i class="fa fa-calendar"></i><span>Monday - Friday:</span> 9:30 AM to 6:30 PM</li></ul>
+							<ul><li><i class="fa fa-map-marker"></i><span>Address:</span> 123 Some Street , London, UK, CP 123</li></ul>
+							<ul><li><i class="fa fa-phone"></i><span>Phone:</span> (032) 987-1235</li></ul>
+							<ul><li><i class="fa fa-fax"></i><span>Fax:</span> (123) 984-1234</li></ul>
+							<ul><li><i class="fa fa-envelope"></i><span>Email:</span> info@doctor.com</li></ul>
+						</div>
+					</div>
+					<div class="col-md-6 col-md-offset-1 contact-form">
+						<h3>leave us a message</h3>
+
+						<form class="form">
+							<input class="name" type="text" placeholder="Name">
+							<input class="email" type="email" placeholder="Email">
+							<input class="phone" type="text" placeholder="Phone No:">
+							<textarea class="message" name="message" id="message" cols="30" rows="10" placeholder="Message"></textarea>
+							<input class="submit-btn" type="submit" value="SUBMIT">
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section><!-- end of contact section -->
+
+	<!-- footer starts here -->
+	<footer class="footer clearfix">
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-6 footer-para">
+					<p>&copy;All right reserved</p>
+				</div>
+				<div class="col-xs-6 text-right">
+					<a href=""><i class="fa fa-facebook"></i></a>
+					<a href=""><i class="fa fa-twitter"></i></a>
+					<a href=""><i class="fa fa-skype"></i></a>
+				</div>
+			</div>
+		</div>
+	</footer>
+
+	<!-- script tags
+	============================================================= -->
+	<script src="{% static 'main/js/jquery-2.1.1.js' %}"></script>
+	<script src="http://maps.google.com/maps/api/js?sensor=true"></script>
+	<script src="{% static 'main/js/gmaps.js' %}"></script>
+	<script src="{% static 'main/js/smoothscroll.js' %}"></script>
+	<script src="{% static 'main/js/bootstrap.min.js'%} "></script>
+	<script src="{% static 'main/js/custom.js' %}"></script>
+</body>
+</html>

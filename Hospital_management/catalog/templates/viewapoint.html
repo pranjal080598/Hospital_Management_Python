@@ -1,0 +1,358 @@
+{% load static%}
+<!DOCTYPE html>
+<html lang="en"> 
+<head>
+ <!-- Load Css For DropDown -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+  <script src="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+  <!--===============================================================================================-->  
+    <meta name="description" content="">
+    <!--===============================================================================================-->  
+    <meta name="author" content="">
+    <!--===============================================================================================-->  
+  <title>Appointment Management</title>
+  <link rel="stylesheet" href="{% static 'main/css/font-awesome.min.css' %} ">
+  <!--===============================================================================================-->  
+  <link rel="stylesheet" href="{% static 'main/css/bootstrap.min.css' %}">
+  <!--===============================================================================================-->  
+  <link rel="stylesheet" href="{% static 'main/css/style.css' %} ">
+  <!--===============================================================================================-->  
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans:600italic,400,800,700,300' rel='stylesheet' type='text/css'>
+  <!--===============================================================================================-->  
+  <link href='http://fonts.googleapis.com/css?family=BenchNine:300,400,700' rel='stylesheet' type='text/css'>
+  <!--===============================================================================================-->  
+  <script src="{% static 'main/js/modernizr.js' %} "></script>
+  <!--===============================================================================================-->  
+
+  <!--[if lt IE 9]>
+      <script src="js/html5shiv.js"></script>
+      <script src="js/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+<body>
+  
+  <!-- ====================================================
+  header section -->
+  <header class="top-header">
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-2 header-logo">
+          <br>
+          <a href="main_base.html"><img src="{% static 'main/img/logo.png' %}" alt="" class="img-responsive logo"></a>
+        </div>
+
+        <div class="col-md-10">
+          <nav class="navbar navbar-default">
+            <div class="container-fluid nav-bar">
+              <!-- Brand and toggle get grouped for better mobile display -->
+              <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                  <span class="sr-only">Toggle navigation</span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                </button>
+              </div>
+
+              <!-- Collect the nav links, forms, and other content for toggling -->
+              <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                
+                <ul class="nav navbar-nav navbar-left">
+                  <li><a class="menu " href="{% url 'home' %}">Home</a></li>
+                  <li><a class="menu " href="{% url 'aboutus' %}">About Us</a></li>
+                  <li><a class="menu" href="{% url 'service' %}">Specialities </a></li>
+                  <li><a class="menu" href="{% url 'team' %}">Our Team</a></li>
+                  {% if user.is_authenticated %}
+                    {% if Patient_logged_in %}
+                         <li class="dropdown">
+                              <button class="dropbtn">Appointment</button>
+                                <div class="dropdown-content">
+                                    <ul class="dropdown1"> 
+                                        <li><a class ="menu" href="{% url 'takeapoint' %}">Make Appointment</a></li>
+                                        <li><a  class ="menu" href="{% url 'cancelapoint' %}">Cancel Appointment</a></li>
+                                        <li><a class ="menu" href="#">My Appointments</a></li>
+                                    </ul>
+                                </div> 
+                        </li>
+                       <li><a class="menu" href="{% url 'history' %}"> History</a></li>
+                    {% endif %}
+                    {% if Doctor_logged_in %}
+                       <li><a class="menu" href="{% url 'givemedicine' %}">Give Medicine</a></li>
+                      <li><a class="menu" href="{% url 'viewapoint'%}">View Appointment</a></li>
+                    {% endif %}
+                    {% if Staff_logged_in %}
+                           <li><a class="menu active " href="{% url 'viewapoint'%}">View Appointment</a></li>
+                    {% endif %}
+                    <li><a class="menu" href="{% url 'contact' %}"> Contact Us</a></li>
+                  </ul>
+                 <ul class="nav navbar-nav navbar-right">
+
+                  <div class="dropdown">
+                      <button class="btn btn-default btn-lg dropdown-toggle" type="button" data-toggle="dropdown"> Hello {{                 user.get_username }} !    <span class="caret"></span></button>
+                                   <ul class="dropdown-menu">
+                                          <li><h3 align="center"><a href="#">{{ user.get_username }} !</a></h3></li>
+                                          
+                
+                        
+                    
+            <!--     <li><a class="dropdown" href="{% url 'home' %}"> Hello {{ user.get_username }} !</a></li>
+                    <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href=""><span class="glyphicon glyphicon-log-out" ></span>
+                    <span class="caret"></span></a>
+                        <ul class="dropdown-menu"> -->
+                          <!--<div class="card">
+                        <img src="{{ Patient_logged_in.0.Profile_pic.url }}" alt="Card image"  style="width:50%">
+                        <div class="container">
+                          <h4><b>{{ user.get_username }}</b></h4> 
+                          <p>Architect & Engineer</p> 
+                           <a href="{%url 'logout'%}" class="btn btn-primary float-right">Logout</a>
+                        </div>
+                      </div>-->
+                     
+                       {% if Patient_logged_in %}
+                          <div class="card" style="width:250px">
+                            <div class="w3-container w3-center"> 
+                              <div class="text-center">
+                              <img class="card-img-center" src="{{ Patient_logged_in.0.Profile_pic.url }}" alt="Card image"   style="width:40%" >
+                          </div>
+                        {% endif %}
+                        {% if Doctor_logged_in %}
+                          <div class="card" style="width:250px">
+                            <div class="w3-container w3-center"> 
+                              <div class="text-center">
+                              <img class="card-img-center" src="{{ Doctor_logged_in.0.Profile_pic.url }}" alt="Card image"   style="width:20%" >
+                          </div>
+                        {% endif %}
+                        {% if Staff_logged_in %}
+                          <div class="card" style="width:250px">
+                            <div class="w3-container w3-center"> 
+                              <div class="text-center">
+                              <img class="card-img-center" src="{{ Staff_logged_in.0.Profile_pic.url }}" alt="Card image"   style="width:20%" >
+                          </div>
+                        {% endif %}
+                       
+                        <li><h3 align="center"><a href="{%url 'logout'%}">LOGOUT</a></h3></li>
+                                   </ul>
+                       </div>
+
+                       <!--
+                          <li role="presentation"><a role="menuitem">Signed In as</a></li>
+                          <li role="presentation"><a role="menuitem" tabindex="-1"> {{ user.get_username }}</a></li>
+                          <li role="presentation" class="divider"></li>
+                          <li role="presentation"><a role="menuitem" tabindex="-1" href="{%url 'logout'%}">Logout</a></li>
+                        -->
+                        </ul>
+                </li>
+                  </ul>
+                
+              {% endif %}
+                </ul> 
+              </div><!-- /navbar-collapse -->
+            </div><!-- / .container-fluid -->
+          </nav>
+        </div>
+      </div>
+    </div>
+  </header> <!-- end of header area -->
+
+  <section class="takeapoint text-center" id="">
+    <div class="container">
+      <div class="row">
+        <!-- <div class="contact-caption clearfix"> -->
+          <!-- <div class="contact-heading text-center"> -->
+        <h2>View Appointments</h2>
+        <br>
+        <br>
+        <hr>
+      </div>
+    </div>
+    <form name="Appoint_form"  id="Appoint_form" method="post" novalidate>
+    {% csrf_token %}
+      <div class="form-group row">
+        <!-- For Initaially Border -->
+        <div class="col-sm-1"></div>
+
+         <h3> <label for="colFormLabelSm" class="col-sm-1 col-form-label col-form-label-sm text-right">Date</label> </h3>
+          <div class="col-sm-2 text-center">
+                <input type="date" class="form-control form-control-sm" id="id_date" name="date" for="{{id_for_label }} placeholder="Enter Appointment Date">
+             <!--   <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+          </div>
+        
+
+
+        <h3>  <label for="colFormLabelSm" class="col-sm-1 col-form-label col-form-label-sm text-right">Doctor</label> </h3>
+          <div class="col-sm-2">   
+            <select class="form-control" id="id_doctor_name" name="doctor_name" for="{{doctor_name.id_for_label }}">
+              <option value=" ">------</option>
+              {%for doc in doctors%}
+                  <option value="{{doc}}">{{doc}}</option>
+              {%endfor%} 
+            </select>
+          </div>
+      </div>
+      <br>
+
+          <div class="col-sm-9">
+                <button type="submit" class="btn btn-primary btn-lg">View Appointments</button>
+          </div>
+          <br>
+          <br>
+          <hr>
+  </form>
+  </section>
+
+
+
+  <section class ="tableborder" id="tableborder">
+    <div class="container">
+     <div class="table-responsive">          
+        <table class="table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>UserName</th>
+              <th>Firstname</th>
+              <th>Middlename</th>
+              <th>Lastname</th>
+              <th>Doctor Name</th>
+              <th>Date</th>
+              <th>Slot</th>
+            </tr>
+          </thead>
+          <tbody>
+          {% for appoint in allapoint%}
+            <tr>
+              <td>{{forloop.counter}}</td>
+              <td><a href="{{ appoint.u_id.id }}">{{appoint.u_id}}</a></td>
+              {% for i in FirstName%}
+                {% if forloop.counter == forloop.parentloop.counter%}
+                <td>{{i}}</td>
+                {%endif%}
+              {%endfor%}
+              {% for i in MiddleName%}
+                {% if forloop.counter == forloop.parentloop.counter%}
+                <td>{{i}}</td>
+                {%endif%}
+              {%endfor%}
+              {% for i in LastName%}
+                {% if forloop.counter == forloop.parentloop.counter%}
+                <td>{{i}}</td>
+                {%endif%}
+              {%endfor%}
+              <td>{{appoint.Doctor_id.First_Name}}</td>
+              <td>{{appoint.Date}}</td>
+              <td>{{appoint.Slot_Time}}</td>
+            </tr>
+          </tbody>
+          {% endfor %}
+        </table>
+    </div>
+  </section>
+  
+    
+
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <script>
+    $("#id_doctor_name").change(function () {
+      var url = $("#Appoint_form").attr("data-slots-url");  // get the url of the `load_cities` view
+      var doctor_name = $(this).val();  // get the selected country ID from the HTML input
+      var date=$("#id_date").val();
+      $.ajax({                       // initialize an AJAX request
+        url: url,                    // set the url of the request (= localhost:8000/hr/ajax/load-cities/)
+        data: {
+          'doctor_name': doctor_name ,'date':date     // add the country id to the GET parameters
+        },
+        success: function (data) {   // `data` is the return of the `load_cities` view function
+          $("#id_slot").html(data);  // replace the contents of the city input with the data that came from the server
+        }
+      });
+
+    });
+
+  </script>
+</div>
+</div>
+</section>
+
+
+<!-- 
+      2nd Option 
+      Not appropriate Form to be displayed
+  <form class="login100-form validate-form" name="Appoint_form"  id="Appoint_form" method="post" data-slots-url="{% url 'ajax_load_slots' %}"  data-date-url="{% url 'ajax_load_finalslots' %}" novalidate>
+           {% csrf_token %}
+           {{ apoint.non_field_errors }}
+          <span class="login100-form-title p-b-26">
+              Take Appointment
+          </span>
+          <span class="login100-form-title p-b-48">
+              <i class="zmdi zmdi-font"></i>
+          </span>
+
+
+          <div class="wrap-input100" >
+              <input  class="input100" type="date" id="id_date" name="date" for="{{ apoint.date.id_for_label }}">
+              <span class="focus-input100" data-placeholder="Username"></span> 
+          </div>
+          {{ apoint.date.errors }} 
+
+          <div class="dropdown" >
+            <select class="dropdown-content" type="dropdown" id="id_doctor_name" name="doctor_name" for="{{ apoint.doctor_name.id_for_label }}">
+                 <span class="focus-input100" data-placeholder="Username"></span>
+                 <option value=" ">------</option>
+                    {%for doc in doctors%}
+                        <option value="{{doc}}">{{doc}}</option>
+                      {%endfor%} 
+            </select>
+          {{ apoint.doctor_name.errors }}
+
+          <div class="dropdown" >
+               <select  class="dropdown-content" type="dropdown" id="id_slot" name="slot" for="{{ apoint.slot.id_for_label }}">
+                    <span class="focus-input100" data-placeholder="Username"></span> 
+                    <option value=" ">------</option>
+                    {%for slot_time in slots_time %}
+                          <option value="{{slot_time}}">{{slot_time}}</option>
+                    {%endfor%} 
+                 </select>
+          {{ apoint.slot.errors }}
+
+          <div class="container-login100-form-btn">
+            <div class="wrap-login100-form-btn">
+              <div class="login100-form-bgbtn"></div>
+              <button class="login100-form-btn" type="submit">
+                Take Appointment
+              </button>
+            </div>
+          </div>
+
+  </form>
+    2 nd Form Ends herex    
+    -->
+
+     <!-- footer starts here -->
+  <footer class="footer clearfix">
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-6 footer-para">
+          <p>&copy;All right reserved</p>
+        </div>
+        <div class="col-xs-6 text-right">
+          <a href=""><i class="fa fa-facebook"></i></a>
+          <a href=""><i class="fa fa-twitter"></i></a>
+          <a href=""><i class="fa fa-skype"></i></a>
+        </div>
+      </div>
+    </div>
+  </footer>

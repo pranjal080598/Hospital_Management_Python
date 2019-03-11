@@ -1,0 +1,40 @@
+<!-- {% extends "base_lib.html" %} -->
+
+{% block content %}
+<h1>Local Library Home</h1>
+
+  <p>Welcome to <em>LocalLibrary</em>, a very basic Django website developed as a tutorial example on the Mozilla Developer Network.</p>
+
+<h2>Dynamic content</h2>
+
+  <p>The library has the following record counts:</p>
+  <!--<ul>
+    <li><strong>Books:</strong> {{ num_books }}</li>
+    <li><strong>Copies:</strong> {{ num_instances }}</li>
+    <li><strong>Copies available:</strong> {{ num_instances_available }}</li>
+    <li><strong>Authors:</strong> {{ num_authors }}</li>
+  </ul>-->
+  <table>
+      <th>
+        <td>Title</td>
+        <td>Author</td>
+        <td>Summary</td>
+        <td>Genre</td>
+      </th>
+    {%for ans in ans_dict%}
+      <tr>
+        <td></td>
+        <td>{{ans.id}}</td>>
+        <td>  {{ ans.title}} </td>
+        <td>  <a href="{{ans.author.first_name}}">{{ ans.author}}  </td>
+        <td>  {{ ans.summary}} </td>
+        <!--<td>  {{ bb.genre}} </td>-->
+        <!--{%for gen in bb.genre.all %}
+          <td>  {{ gen.name}} </td>
+        {% endfor %}-->
+      </tr>
+      <img src="{{ans.book_pic.url}}" height="100" width="100"/>      
+    {% endfor %}
+    </table>
+
+{% endblock %}
