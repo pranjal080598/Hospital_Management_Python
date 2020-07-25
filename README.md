@@ -11,4 +11,5 @@ There are 3 types of login:
 3. Admin: Manage the users of the system
 
 Simply download/clone the repository. Import the database. Run the index.html
+Host the project on pythonanywhere cloud for free. 
 
