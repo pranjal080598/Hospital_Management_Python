@@ -12,4 +12,16 @@ There are 3 types of login:
 
 Simply download/clone the repository. Import the database. Run the index.html.
 Host the project on pythonanywhere cloud for free. 
+Link for hosted website: http://djcsproject.pythonanywhere.com/accounts/login/?next=/home/
+Login Details:
+Doctor
+1. Name: Monil
+   Pwd : doctor@123
+2. Name: Pranjal
+   Pwd : doctor@123
+3. Name: Anchal
+   Pwd : doctor@123
+Patient
+1. Name: Raj
+   Pwd: rajsimran
 
