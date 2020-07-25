@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+#define the setting
 import os
 import sys
 
