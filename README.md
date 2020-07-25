@@ -10,6 +10,6 @@ There are 3 types of login:
 2. Doctor: View the medical history of the patient, prescribe medicine, see upcoming appointments
 3. Admin: Manage the users of the system
 
-Simply download/clone the repository. Import the database. Run the index.html
+Simply download/clone the repository. Import the database. Run the index.html.
 Host the project on pythonanywhere cloud for free. 
 
